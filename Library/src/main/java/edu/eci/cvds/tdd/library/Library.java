@@ -75,4 +75,16 @@ public class Library {
         return users.add(user);
     }
 
+    public Map<Book, Integer> getBooks() {
+        return books;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
 }
