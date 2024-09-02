@@ -174,6 +174,19 @@ public class LibraryTest {
         library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
         assertNotNull(loan);
     }
+
+    @Test
+    public void shouldReturnNullWhenReturningNonExistentLoan() {
+        Loan loan = new Loan();
+        Loan returnedLoan = library.returnLoan(loan);
+        assertNull(returnedLoan);
+    }
+
+    @Test
+    public void shouldReturnNullWhenReturningNullLoan() {
+        Loan returnedLoan = library.returnLoan(null);
+        assertNull(returnedLoan);
+    }
 }
 
 
