@@ -12,6 +12,7 @@ public class LibraryTest {
 
     Library library = new Library();
     Book HarryPotter = new Book("Harry potter", "Jk Rowling", "001");
+    Book Shelly = new Book("Shelly", "Vector", "002");
 
 
     @Test
@@ -20,11 +21,21 @@ public class LibraryTest {
         assertTrue(addBook);
     }
 
-    @Test
-    public void ShoulsAddTheAmountOfBooksIfAlreadyExists() {
-
+    public void shouldCreateANewBookandItsAmountIsOne() {
+        library.addBook(Shelly);
+        int amountOfBooks = library.getBooks().get(Shelly);
+        assertEquals(1, amountOfBooks);
     }
 
+    @Test
+    public void ShoulsAddTheAmountOfBooksIfAlreadyExists() {
+        library.addBook(HarryPotter);
+        //Books in Library class are a map <Book, Integer> so the amount of books is the value of the map
+        int amountOfBooks = library.getBooks().get(HarryPotter);
+        assertEquals(2, amountOfBooks);
+    }
+
+    
 
     @Test
     public void shouldIncreaseBy1TheAmuntOfTheReturnedLibrary() {
