@@ -8,16 +8,24 @@ public class UserTest {
 
     @Test
     public void ShouldEqualsConstructorWithName(){
-        User user = new User();
-        user.setName("Diego");
+        User user = new User("Diego", "123");
         assertEquals(user.getName(), "Diego");
     }
 
     @Test
-    public void ShouldEqualsId(){
-        User user = new User();
+    public void ShouldEqualsIdCompareWithConstructorMethod(){
+        User user = new User("Andres", "312");
         user.setId("312");
         assertEquals(user.getId(), "312");
+    }
+
+    @Test
+    public void ShouldEqualsSettersWithIdAndName(){
+        User user = new User("Sebastian", "100087651");
+        user.setId("18338");
+        user.setName("Cardona");
+        assertEquals("18338", user.getId());
+        assertEquals("Cardona", user.getName());
     }
 
 
