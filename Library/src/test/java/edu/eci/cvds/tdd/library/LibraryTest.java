@@ -2,7 +2,7 @@ package edu.eci.cvds.tdd.library;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import edu.eci.cvds.tdd.library.book.Book;
 import edu.eci.cvds.tdd.library.user.User;
@@ -26,6 +26,7 @@ public class LibraryTest {
         assertTrue(addBook);
     }
 
+    @Test
     public void shouldCreateANewBookandItsAmountIsOne() {
         library.addBook(Shelly);
         int amountOfBooks = library.getBooks().get(Shelly);
@@ -106,7 +107,17 @@ public class LibraryTest {
         library.addUser(Clarence);
         library.addBook(HarryPotter);
         Loan loan = library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
-        assertEquals(loan.getLoanDate(), LocalDateTime.now());
+        assertEquals(loan.getLoanDate(), LocalDate.now());
+    }
+
+    @Test
+    public void ShouldCreateALoanAndOtherUserCantLoanTheSameBook() {
+        library.addUser(Clarence);
+        library.addUser(John);
+        library.addBook(HarryPotter);
+        library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
+        Loan loan2 = library.loanABook(John.getId(), HarryPotter.getIsbn());
+        assertNull(loan2);
     }
 
     @Test
@@ -142,7 +153,7 @@ public class LibraryTest {
         library.addBook(HarryPotter);
         Loan loan = library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
         library.returnLoan(loan);
-        assertEquals(loan.getReturnDate(), LocalDateTime.now());
+        assertEquals(loan.getReturnDate(), LocalDate.now());
     }
 
     @Test
@@ -154,6 +165,15 @@ public class LibraryTest {
         assertNotNull(loan);
     }
 
+    @Test
+    public void shouldCreateALoanAndReturnTheLoanAndTheUserCanLoanTheSameBookAgain() {
+        library.addUser(Clarence);
+        library.addBook(HarryPotter);
+        Loan loan = library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
+        library.returnLoan(loan);
+        library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
+        assertNotNull(loan);
+    }
 }
 
 
