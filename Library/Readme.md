@@ -83,3 +83,8 @@ Como vemos tenemos una cobertura del 75.2% en los test
 
 Ahora lo siguiente es ver en donde no cubrimos los test y ejecutar nuevamente los test para ver si se soluciono el problema
 
+Nos dimos cuenta que faltaban test por verificar entonces los agrgeamos y volvemos a ejecutar
+
+![img_6.png](img_6.png)
+
+Teniendo una cobertura total de 87.6% en los test dando por finalizado el laboratorio 3
