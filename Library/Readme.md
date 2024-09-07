@@ -32,3 +32,34 @@ Como se puede apreciar en la imagen la cobertura de los testeos respecto a todas
 
 Como se puede apreciar en la imagen anterior, el unico metodo que no tiene testeos es la Clase App.java la cual no se el implementa ningun metodo por el momento
 
+### Ahora vamos a configurar a SONARQUBE
+
+Principalmente lo agregamos en el pom.xml
+
+Y creamos el contenedor con el siguiente comando
+
+Para crearlo
+```
+docker pull sonarqube
+```
+Y luego el comando para arrancahrlo en esa dirrecion
+```
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+```
+
+y despues lo que hacemos es visualizar si esta correcto 
+
+![img_1.png](img_1.png)
+
+Luego ingresamos a la url
+
+```
+http://localhost:9000/
+```
+
+y este nos dirige a la siguinete pagina 
+
+![img_2.png](img_2.png)
+
+luego inicamos la session con admin y la contraseña la cambiamos
+

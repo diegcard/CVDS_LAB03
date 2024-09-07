@@ -44,8 +44,23 @@ public class Book {
         return isbn;
     }
 
+    /**
+     * Compares this book to the specified object.
+     *
+     * @param obj the object to compare
+     * @return true if this object is equal to the specified book, false otherwise
+     * @throws NullPointerException if the book is not initialized
+     */
     @Override
-    public boolean equals(Object obj) {
-        return isbn.equals(((Book)obj).isbn);
+    public boolean equals(Object obj) throws NullPointerException{
+        if (obj == null){
+            return false;
+        }
+        if (!(obj instanceof Book)) {
+            return false;
+        }
+        Book otherBook = (Book) obj;
+        return isbn != null && isbn.equals(otherBook.isbn);
     }
+
 }
