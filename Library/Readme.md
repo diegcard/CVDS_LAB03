@@ -63,3 +63,23 @@ y este nos dirige a la siguinete pagina
 
 luego inicamos la session con admin y la contraseña la cambiamos
 
+Configurammos la configuracion de pom.xml con las tokens
+
+![img_3.png](img_3.png)
+
+Ahora Nos da esta pagina
+
+![img_4.png](img_4.png)
+
+Y ahora ponemos el comando 
+    
+```
+mvn sonar:sonar
+```
+
+Como vemos tenemos una cobertura del 75.2% en los test
+
+![img_5.png](img_5.png)
+
+Ahora lo siguiente es ver en donde no cubrimos los test y ejecutar nuevamente los test para ver si se soluciono el problema
+

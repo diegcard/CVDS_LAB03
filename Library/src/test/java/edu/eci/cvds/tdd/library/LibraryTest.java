@@ -3,6 +3,7 @@ package edu.eci.cvds.tdd.library;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import edu.eci.cvds.tdd.library.book.Book;
 import edu.eci.cvds.tdd.library.user.User;
@@ -186,6 +187,51 @@ public class LibraryTest {
     public void shouldReturnNullWhenReturningNullLoan() {
         Loan returnedLoan = library.returnLoan(null);
         assertNull(returnedLoan);
+    }
+
+    @Test
+    public void getUsersShouldReturnEmptyListWhenNoUsersAdded() {
+        assertTrue(library.getUsers().isEmpty());
+    }
+
+    @Test
+    public void getUsersShouldReturnListOfAddedUsers() {
+        library.addUser(Clarence);
+        library.addUser(John);
+        List<User> users = library.getUsers();
+        assertEquals(2, users.size());
+        assertTrue(users.contains(Clarence));
+        assertTrue(users.contains(John));
+    }
+
+    @Test
+    public void getLoansShouldReturnEmptyListWhenNoLoansExist() {
+        assertTrue(library.getLoans().isEmpty());
+    }
+
+    @Test
+    public void getLoansShouldReturnListOfExistingLoans() {
+        library.addUser(Clarence);
+        library.addBook(HarryPotter);
+        Loan loan = library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
+        List<Loan> loans = library.getLoans();
+        assertEquals(1, loans.size());
+        assertTrue(loans.contains(loan));
+    }
+
+    @Test
+    public void getLoanShouldReturnNullWhenLoanDoesNotExist() {
+        Loan loan = library.getLoan(Clarence, HarryPotter);
+        assertNull(loan);
+    }
+
+    @Test
+    public void getLoanShouldReturnLoanWhenItExists() {
+        library.addUser(Clarence);
+        library.addBook(HarryPotter);
+        Loan loan = library.loanABook(Clarence.getId(), HarryPotter.getIsbn());
+        Loan retrievedLoan = library.getLoan(Clarence, HarryPotter);
+        assertEquals(loan, retrievedLoan);
     }
 }
 
